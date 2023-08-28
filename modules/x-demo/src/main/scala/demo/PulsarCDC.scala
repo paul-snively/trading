@@ -92,7 +92,8 @@ object PG:
       "org.postgresql.Driver",   // driver classname
       "jdbc:postgresql:trading", // connect URL (driver-specific)
       "postgres",                // user
-      "postgres"                 // password
+      "postgres",                // password
+      None                       // LogHandler
     )
 
   val deleteAuthors: IO[Unit] = sql""" 
