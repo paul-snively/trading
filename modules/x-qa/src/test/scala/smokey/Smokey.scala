@@ -31,7 +31,7 @@ object Smokey extends IOSuite:
   val connectReq = WSRequest(uri"ws://localhost:9000/v1/ws")
 
   override def sharedResource: Resource[IO, Res] =
-    (Pulsar.make[IO](pulsarCfg.url), JdkWSClient.simple[IO]).tupled
+    (Pulsar.make[IO](pulsarCfg.url), Resource.liftK(JdkWSClient.simple[IO])).tupled
 
   val symbols1: List[WsIn] = List(EURUSD, USDCAD, GBPUSD).map(WsIn.Subscribe(_))
   val symbols2: List[WsIn] = List(EURPLN, CHFEUR).map(WsIn.Subscribe(_))
@@ -129,7 +129,7 @@ object Smokey extends IOSuite:
       .flatMap {
         case (((_: WsOut.Attached) :: xs), ((_: WsOut.Attached) :: ys)) =>
           IO.pure {
-            expect.same(xs, expected1) && expect.same(ys, expected2)
+            expect.same(expected1, xs) && expect.same(expected2, ys)
           }
         case xs =>
           for
