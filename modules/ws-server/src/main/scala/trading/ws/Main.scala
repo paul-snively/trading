@@ -12,6 +12,9 @@ import fs2.Stream
 import org.apache.pulsar.client.api.SubscriptionInitialPosition
 
 object Main extends IOApp.Simple:
+
+  override protected def blockedThreadDetectionEnabled = true
+
   def run: IO[Unit] =
     Stream
       .resource(resources)

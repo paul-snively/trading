@@ -19,6 +19,9 @@ import dev.profunktor.pulsar.transactions.PulsarTx
 import fs2.Stream
 
 object Main extends IOApp.Simple:
+
+  override protected def blockedThreadDetectionEnabled = true
+
   def run: IO[Unit] =
     Stream
       .resource(resources)
