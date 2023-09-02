@@ -129,8 +129,7 @@ object Smokey extends IOSuite:
       .flatMap {
         case (((_: WsOut.Attached) :: xs), ((_: WsOut.Attached) :: ys)) =>
           IO.pure {
-            expect.eql(expected1, xs) &&
-              expect.eql(expected2, ys)
+            expect.eql(expected1, xs) && expect.eql(expected2, ys)
           }
         case xs =>
           for
