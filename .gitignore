@@ -1,10 +1,13 @@
 project/boot
+project/project
 target
 .ensime
 .ensime_lucene
 .ensime_cache
 .ensime_snapshot
 ensime.sbt
+.vscode
+.bsp
 TAGS
 \#*#
 *~
